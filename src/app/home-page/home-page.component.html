@@ -1,0 +1,71 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+ 
+<div>
+<div class="panel panel-primary" >
+                <div class="panel-heading" (click)="sideNavClick('sites')">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+                            </span>Refresh</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
+                            </span>Available</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+                            </span>Busy</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
+                                Away</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+                                Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body"  *ngIf="clicked == 'sites'">
+                  <ul class="chat">
+				     <div *ngFor="let message of messages | async">
+          
+          <!-- Point: 2 -->
+          <div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">
+		   <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+            <p>{{ message.message }}</p>
+			     <strong class="primary-font"> {{ message.displayName }} </strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>{{ message.timestamp | date:"MM/dd/yy hh:mm a" }}</small>
+            <div class="author">
+             
+            </div>
+          </div>
+		 
+        </div>
+	
+      
+
+		   <div class="panel-footer">
+		<figure class="highlight">
+        
+        <!-- Point: 3 -->
+        <input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">
+        <a class="btn btn-warning btn-sm" (click)="sendMessage()">SEND</a>
+       
+      </figure>
+                  
+                </div>
+              
+	
+	</ul>
+                </div>
+		
+            </div>
+			 
+</div>
+
+
+</div>
+</div>
+ 
